@@ -1,0 +1,30 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "Compares two configuration files and shows a difference.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "gendiff": "bin/nodejs-package.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isour/frontend-project-lvl2.git"
+  },
+  "keywords": [
+    "hexlet",
+    "education"
+  ],
+  "author": "isour",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isour/frontend-project-lvl2/issues"
+  },
+  "homepage": "https://github.com/isour/frontend-project-lvl2#readme",
+  "dependencies": {
+    "commander": "^8.1.0"
+  }
+}
