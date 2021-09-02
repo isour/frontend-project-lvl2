@@ -17,6 +17,6 @@ program
         const file1 = fs.readFileSync(program.args[0]);
         const file2 = fs.readFileSync(program.args[1]);
 
-        gendiff(JSON.parse(file1.toString()), JSON.parse(file2.toString()));
+        console.log(gendiff(JSON.parse(file1.toString()), JSON.parse(file2.toString())));
     })
     .parse();
