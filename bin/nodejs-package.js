@@ -3,10 +3,10 @@
 import program from 'commander';
 import * as fs from 'fs';
 import { createRequire } from 'module';
-import gendiff from '../gendiff.js';
+import gendiff from '../index.js';
 
 const require = createRequire(import.meta.url);
-const packageFile = require('../../package.json');
+const packageFile = require('../package.json');
 
 program
   .version(packageFile.version)

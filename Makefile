@@ -12,5 +12,11 @@ publish:
 test:
 	npm test
 
+link:
+	npm link
+
+watch:
+	npm run testWatch
+
 test-coverage:
 	npm test -- --coverage --coverageProvider=v8

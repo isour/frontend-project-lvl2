@@ -5,10 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "npx jest --bail"
+    "test": "npx jest --bail",
+    "testWatch": "npx jest --watch"
   },
   "bin": {
-    "gendiff": "src/bin/nodejs-package.js"
+    "gendiff": "bin/nodejs-package.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
   "homepage": "https://github.com/isour/frontend-project-lvl2#readme",
   "dependencies": {
     "commander": "^8.1.0",
+    "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
