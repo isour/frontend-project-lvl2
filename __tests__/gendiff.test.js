@@ -18,15 +18,15 @@ const readFile = (filename) => {
 };
 
 test('flat test json', async () => {
-  const json1 = JSON.parse(await readFile('file1.json'));
-  const json2 = JSON.parse(await readFile('file2.json'));
   const result1 = await readFile('result1.txt');
-  expect(gendiff(json1, json2)).toEqual(result1);
+  expect(
+    gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'))
+  ).toEqual(result1);
 });
 
 test('flat test yaml', async () => {
-  const json1 = JSON.parse(await readFile('file1.yaml'));
-  const json2 = JSON.parse(await readFile('file2.yaml'));
   const result1 = await readFile('result1.txt');
-  expect(gendiff(json1, json2)).toEqual(result1);
+  expect(
+    gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'))
+  ).toEqual(result1);
 });

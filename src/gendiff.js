@@ -36,6 +36,7 @@ const compareObjects = (object1, object2) => {
 export default (file1, file2) => {
   let sortedObject1;
   let sortedObject2;
+
   if (isFileJSON(file1)) {
     sortedObject1 = getObjectFromJSON(file1);
     sortedObject2 = getObjectFromJSON(file2);
