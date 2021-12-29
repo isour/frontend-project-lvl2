@@ -17,16 +17,30 @@ const readFile = (filename) => {
   return dd;
 };
 
-test('flat test json', async () => {
-  const result1 = await readFile('result1.txt');
+// test('flat test json', async () => {
+//   const result1 = await readFile('result1.txt');
+//   expect(
+//     gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'))
+//   ).toEqual(result1);
+// });
+
+// test('flat test yaml', async () => {
+//   const result1 = await readFile('result1.txt');
+//   expect(
+//     gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'))
+//   ).toEqual(result1);
+// });
+
+test('rec test json', async () => {
+  const result1 = await readFile('result2.txt');
   expect(
-    gendiff(getFixturePath('file1.json'), getFixturePath('file2.json'))
+    gendiff(getFixturePath('file3.json'), getFixturePath('file4.json'))
   ).toEqual(result1);
 });
 
-test('flat test yaml', async () => {
-  const result1 = await readFile('result1.txt');
-  expect(
-    gendiff(getFixturePath('file1.yaml'), getFixturePath('file2.yaml'))
-  ).toEqual(result1);
-});
+// test('rec test yaml', async () => {
+//   const result1 = await readFile('result2.txt');
+//   expect(
+//     gendiff(getFixturePath('file3.yaml'), getFixturePath('file4.yaml'))
+//   ).toEqual(result1);
+// });
