@@ -33,7 +33,7 @@ const convertionFunctions = {
     `Property '${path}' was updated. From ${stringify(
       node.value1
     )} to ${stringify(node.value2)}\n`,
-  unchanged: (node, path) => '',
+  unchanged: () => '',
 };
 
 const render = (tree) => {

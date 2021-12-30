@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { getObjectFromYAML, isFileYAML } from './parsers/yaml.js';
+import { getObjectFromYAML } from './parsers/yaml.js';
 import { getObjectFromJSON, isFileJSON } from './parsers/json.js';
 import render from './formatters/index.js';
 
