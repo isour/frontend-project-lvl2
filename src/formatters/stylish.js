@@ -1,6 +1,4 @@
-const replaceAt = (str, index, rpc) => {
-  return str.substr(0, index) + rpc + str.substr(index + rpc.length)
-};
+const replaceAt = (str, index, rpc) => str.substr(0, index) + rpc + str.substr(index + rpc.length);
 
 const getIndentation = (depth, symb = ' ') => {
   const emptyString = '    '.repeat(depth);
