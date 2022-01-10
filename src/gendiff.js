@@ -14,7 +14,7 @@ const getTree = (object1, object2) => ({
   children: getDiffTree(object1, object2),
 });
 
-export default (file1, file2, formatName = 'stylysh') => {
+export default (file1, file2, formatName = 'stylish') => {
   const fileObject1 = parse(
     readFile(file1).toString(),
     getFileExtension(file1)
