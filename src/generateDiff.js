@@ -4,7 +4,7 @@ const isObject = (test) => typeof test === 'object' && !Array.isArray(test) && t
 
 const getDiffTree = (object1, object2) => {
   const allKeys = _.union(Object.keys(object1), Object.keys(object2));
-  const sortedKeys = allKeys.sort();
+  const sortedKeys = _.sortBy(allKeys);
   return sortedKeys.map((key) => {
     if (!Object.prototype.hasOwnProperty.call(object1, key)) {
       return {
