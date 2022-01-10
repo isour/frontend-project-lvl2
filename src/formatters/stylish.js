@@ -2,8 +2,8 @@ const replaceAt = (str, index, rpc) =>
   str.substr(0, index) + rpc + str.substr(index + rpc.length);
 
 const getIndentation = (depth, symb = ' ') => {
-  let string = '    '.repeat(depth);
-  string = replaceAt(string, string.length - 2, symb);
+  const emptyString = '    '.repeat(depth);
+  const string = replaceAt(emptyString, emptyString.length - 2, symb);
   return depth === 0 ? '    ' : string;
 };
 
@@ -12,7 +12,9 @@ const stringify = (obj, depth) => {
     return String(obj);
   }
 
-  const output = Object.entries(obj).map((node) => conversionFunctions.unchanged({ key: node[0], value: node[1] }, depth + 1));
+  const entries = Object.entries(obj);
+  const output = entries
+    .map(([key, value]) => conversionFunctions.unchanged({ key, value }, depth + 1));
 
   return `{\n${output.join('\n')}\n${getIndentation(depth)}}`;
 };
