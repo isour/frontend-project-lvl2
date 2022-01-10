@@ -7,8 +7,7 @@ import gendiff from '../src/gendiff.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const getFixturePath = (filename) =>
-  join(__dirname, '..', '__fixtures__', filename);
+const getFixturePath = (filename) => join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => {
   const dd = fs.readFileSync(getFixturePath(filename), 'utf-8', (err, data) => {
     if (err) throw err;
@@ -62,7 +61,9 @@ test.each([
   },
 ])(
   'test file1: $file1, file2: $file2, outputFormat: $outputFormat)',
-  ({ file1, file2, outputFormat, expected }) => {
+  ({
+    file1, file2, outputFormat, expected,
+  }) => {
     expect(gendiff(file1, file2, outputFormat)).toBe(expected);
-  }
+  },
 );

@@ -8,37 +8,30 @@ const stringify = (obj) => {
 const conversionFunctions = {
   root: (node, path, fn) => {
     const result = node.children
-      .map((childNode) =>
-        conversionFunctions[childNode.status](childNode, `${childNode.key}`, fn)
-      )
+      .map((childNode) => conversionFunctions[childNode.status](childNode, `${childNode.key}`, fn))
       .join('');
     return `${result}`;
   },
-  added: (node, path) =>
-    `Property '${path}' was added with value: ${stringify(node.value)}\n`,
+  added: (node, path) => `Property '${path}' was added with value: ${stringify(node.value)}\n`,
   removed: (node, path) => `Property '${path}' was removed\n`,
   nested: (node, path, fn) => {
     const result = node.children
-      .map((childNode) =>
-        conversionFunctions[childNode.status](
-          childNode,
-          `${path}.${childNode.key}`,
-          fn
-        )
-      )
+      .map((childNode) => conversionFunctions[childNode.status](
+        childNode,
+        `${path}.${childNode.key}`,
+        fn,
+      ))
       .join('');
     return `${String(result)}`;
   },
-  changed: (node, path) =>
-    `Property '${path}' was updated. From ${stringify(
-      node.value1
-    )} to ${stringify(node.value2)}\n`,
+  changed: (node, path) => `Property '${path}' was updated. From ${stringify(
+    node.value1,
+  )} to ${stringify(node.value2)}\n`,
   unchanged: () => '',
 };
 
 const render = (tree) => {
-  const iteration = (node, path) =>
-    conversionFunctions[node.status](node, path, iteration);
+  const iteration = (node, path) => conversionFunctions[node.status](node, path, iteration);
 
   return iteration(tree, '').trim();
 };

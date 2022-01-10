@@ -1,5 +1,4 @@
-const replaceAt = (str, index, replacement) =>
-  str.substr(0, index) + replacement + str.substr(index + replacement.length);
+const replaceAt = (str, index, rpc) => str.substr(0, index) + rpc + str.substr(index + rpc.length);
 
 const getIndentation = (depth, symb = ' ') => {
   let string = '    '.repeat(depth);
@@ -13,8 +12,7 @@ const stringify = (obj, depth) => {
   }
 
   const output = Object.entries(obj).map((node) =>
-    conversionFunctions.unchanged({ key: node[0], value: node[1] }, depth + 1)
-  );
+    conversionFunctions.unchanged({ key: node[0], value: node[1] }, depth + 1));
 
   return `{\n${output.join('\n')}\n${getIndentation(depth)}}`;
 };
@@ -22,41 +20,32 @@ const stringify = (obj, depth) => {
 const conversionFunctions = {
   root: (node, depth, fn) => {
     const result = node.children
-      .map((childNode) =>
-        conversionFunctions[childNode.status](childNode, depth + 1, fn)
-      )
+      .map((childNode) => conversionFunctions[childNode.status](childNode, depth + 1, fn))
       .join('\n');
     return `{\n${result}\n}`;
   },
-  added: (node, depth) =>
-    `${getIndentation(depth, '+')}${node.key}: ${stringify(node.value, depth)}`,
-  removed: (node, depth) =>
-    `${getIndentation(depth, '-')}${node.key}: ${stringify(node.value, depth)}`,
+  added: (node, depth) => `${getIndentation(depth, '+')}${node.key}: ${stringify(node.value, depth)}`,
+  removed: (node, depth) => `${getIndentation(depth, '-')}${node.key}: ${stringify(node.value, depth)}`,
   nested: (node, depth, fn) => {
     const result = node.children
-      .map((childNode) =>
-        conversionFunctions[childNode.status](childNode, depth + 1, fn)
-      )
+      .map((childNode) => conversionFunctions[childNode.status](childNode, depth + 1, fn))
       .join('\n');
     return `${getIndentation(depth)}${node.key}: {\n${String(
-      result
+      result,
     )}\n${getIndentation(depth)}}`;
   },
-  changed: (node, depth) =>
-    `${getIndentation(depth, '-')}${node.key}: ${stringify(
-      node.value1,
-      depth
-    )}\n${getIndentation(depth, '+')}${node.key}: ${stringify(
-      node.value2,
-      depth
-    )}`,
-  unchanged: (node, depth) =>
-    `${getIndentation(depth)}${node.key}: ${stringify(node.value, depth)}`,
+  changed: (node, depth) => `${getIndentation(depth, '-')}${node.key}: ${stringify(
+    node.value1,
+    depth,
+  )}\n${getIndentation(depth, '+')}${node.key}: ${stringify(
+    node.value2,
+    depth,
+  )}`,
+  unchanged: (node, depth) => `${getIndentation(depth)}${node.key}: ${stringify(node.value, depth)}`,
 };
 
 const render = (tree) => {
-  const iteration = (node, depth) =>
-    conversionFunctions[node.status](node, depth, iteration);
+  const iteration = (node, depth) => conversionFunctions[node.status](node, depth, iteration);
 
   return iteration(tree, 0);
 };

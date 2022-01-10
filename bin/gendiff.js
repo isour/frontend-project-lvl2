@@ -14,7 +14,7 @@ program
   .option('-f, --format <type>', 'output format')
   .action(() => {
     console.log(
-      gendiff(program.args[0], program.args[1], program.opts().format)
+      gendiff(program.args[0], program.args[1], program.opts().format),
     );
   })
   .parse();

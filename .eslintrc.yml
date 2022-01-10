@@ -1,9 +1,7 @@
 ---
-
 plugins:
   # https://github.com/jest-community/eslint-plugin-jest
   - jest
-  - prettier
 
 # https://eslint.org/docs/user-guide/configuring#specifying-environments
 env:
@@ -13,15 +11,14 @@ env:
 extends:
   - 'airbnb-base'
   - 'plugin:jest/recommended'
-  - 'prettier'
 
 parserOptions:
   ecmaVersion: 11
   sourceType: module
 
 rules:
-  prettier/prettier: ["error", {'endOfLine': 'auto',}]
   no-console: 0
+  linebreak-style: 0
   import/extensions: 0 # FIXME: remove when rule will be adjusted for new nodejs version
-  no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]
+  no-underscore-dangle: [2, { 'allow': ['__filename', '__dirname'] }]
   no-use-before-define: 0
