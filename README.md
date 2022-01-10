@@ -13,7 +13,7 @@
 ## Примеры использования:
 
 - `gendiff file3.json file4.json --format json`
-- `gendiff file1.json file2.json --format stylysh`
+- `gendiff file1.json file2.json --format stylish`
 - `gendiff file1.json file2.json --format plain`
 
 ### Hexlet tests and linter status:

@@ -21,19 +21,19 @@ test.each([
   {
     file1: getFixturePath('file1.json'),
     file2: getFixturePath('file2.json'),
-    outputFormat: 'stylysh',
+    outputFormat: 'stylish',
     expected: readFile('result1.txt'),
   },
   {
     file1: getFixturePath('file1.yaml'),
     file2: getFixturePath('file2.yaml'),
-    outputFormat: 'stylysh',
+    outputFormat: 'stylish',
     expected: readFile('result1.txt'),
   },
   {
     file1: getFixturePath('file3.json'),
     file2: getFixturePath('file4.json'),
-    outputFormat: 'stylysh',
+    outputFormat: 'stylish',
     expected: readFile('result2.txt'),
   },
   {
@@ -51,7 +51,7 @@ test.each([
   {
     file1: getFixturePath('file3.yaml'),
     file2: getFixturePath('file4.yaml'),
-    outputFormat: 'stylysh',
+    outputFormat: 'stylish',
     expected: readFile('result2.txt'),
   },
   {

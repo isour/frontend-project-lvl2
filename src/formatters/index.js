@@ -1,4 +1,4 @@
-import renderStylish from './stylysh.js';
+import renderStylish from './stylish.js';
 import renderPlain from './plain.js';
 
 const render = (tree, type) => {
