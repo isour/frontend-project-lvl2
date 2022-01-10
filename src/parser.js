@@ -12,4 +12,6 @@ const parserPresets = {
   },
 };
 
+parserPresets.yml = parserPresets.yaml;
+
 export default (file, format) => parserPresets[format](file);
