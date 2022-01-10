@@ -19,7 +19,7 @@ const getDiffTree = (object1, object2) => {
         status: 'removed',
       };
 
-    if (isObject(object2[key]) && isObject(object2[key]))
+    if (isObject(object1[key]) && isObject(object2[key]))
       return {
         key,
         value: object1[key],
