@@ -13,6 +13,7 @@ const stringify = (obj, depth) => {
 
   const entries = Object.entries(obj);
   const output = entries
+    // eslint-disable-next-line no-use-before-define
     .map(([key, value]) => conversionFunctions.unchanged({ key, value }, depth + 1));
 
   return `{\n${output.join('\n')}\n${getIndentation(depth)}}`;
