@@ -13,17 +13,17 @@ const stringify = (obj, depth) => {
   }
 
   const output = Object.entries(obj).map((node) =>
-    convertionFunctions.unchanged({ key: node[0], value: node[1] }, depth + 1)
+    conversionFunctions.unchanged({ key: node[0], value: node[1] }, depth + 1)
   );
 
   return `{\n${output.join('\n')}\n${getIndentation(depth)}}`;
 };
 
-const convertionFunctions = {
+const conversionFunctions = {
   root: (node, depth, fn) => {
     const result = node.children
       .map((childNode) =>
-        convertionFunctions[childNode.status](childNode, depth + 1, fn)
+        conversionFunctions[childNode.status](childNode, depth + 1, fn)
       )
       .join('\n');
     return `{\n${result}\n}`;
@@ -35,7 +35,7 @@ const convertionFunctions = {
   nested: (node, depth, fn) => {
     const result = node.children
       .map((childNode) =>
-        convertionFunctions[childNode.status](childNode, depth + 1, fn)
+        conversionFunctions[childNode.status](childNode, depth + 1, fn)
       )
       .join('\n');
     return `${getIndentation(depth)}${node.key}: {\n${String(
@@ -56,7 +56,7 @@ const convertionFunctions = {
 
 const render = (tree) => {
   const iteration = (node, depth) =>
-    convertionFunctions[node.status](node, depth, iteration);
+    conversionFunctions[node.status](node, depth, iteration);
 
   return iteration(tree, 0);
 };

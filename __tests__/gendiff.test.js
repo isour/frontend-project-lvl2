@@ -17,68 +17,52 @@ const readFile = (filename) => {
   return dd;
 };
 
-test('flat test json', async () => {
-  const result1 = await readFile('result1.txt');
-  expect(
-    gendiff(
-      getFixturePath('file1.json'),
-      getFixturePath('file2.json'),
-      'stylysh'
-    )
-  ).toEqual(result1);
-});
-
-test('flat test yaml', async () => {
-  const result1 = await readFile('result1.txt');
-  expect(
-    gendiff(
-      getFixturePath('file1.yaml'),
-      getFixturePath('file2.yaml'),
-      'stylysh'
-    )
-  ).toEqual(result1);
-});
-
-test('rec test json', async () => {
-  const result1 = await readFile('result2.txt');
-  expect(
-    gendiff(
-      getFixturePath('file3.json'),
-      getFixturePath('file4.json'),
-      'stylysh'
-    )
-  ).toEqual(result1);
-});
-
-test('rec test plain', async () => {
-  const result1 = await readFile('result_plain.txt');
-  expect(
-    gendiff(getFixturePath('file3.json'), getFixturePath('file4.json'), 'plain')
-  ).toEqual(result1);
-});
-
-test('rec yaml vs json plain', async () => {
-  const result1 = await readFile('result_plain.txt');
-  expect(
-    gendiff(getFixturePath('file3.json'), getFixturePath('file4.yaml'), 'plain')
-  ).toEqual(result1);
-});
-
-test('rec test json 2', async () => {
-  expect(
-    gendiff(getFixturePath('file3.json'), getFixturePath('file4.json'), 'json')
-  ).toEqual(
-    gendiff(getFixturePath('file3.json'), getFixturePath('file4.json'), 'json')
-  );
-});
-
-test('rec test yaml', async () => {
-  const result1 = await readFile('result2.txt');
-  expect(
-    gendiff(
-      getFixturePath('file3.yaml'),
-      getFixturePath('file4.yaml'),
-      'stylysh'
-    )
-  ).toEqual(result1);
-});
+test.each([
+  {
+    file1: getFixturePath('file1.json'),
+    file2: getFixturePath('file2.json'),
+    outputFormat: 'stylysh',
+    expected: await readFile('result1.txt'),
+  },
+  {
+    file1: getFixturePath('file1.yaml'),
+    file2: getFixturePath('file2.yaml'),
+    outputFormat: 'stylysh',
+    expected: await readFile('result1.txt'),
+  },
+  {
+    file1: getFixturePath('file3.json'),
+    file2: getFixturePath('file4.json'),
+    outputFormat: 'stylysh',
+    expected: await readFile('result2.txt'),
+  },
+  {
+    file1: getFixturePath('file3.json'),
+    file2: getFixturePath('file4.json'),
+    outputFormat: 'plain',
+    expected: await readFile('result_plain.txt'),
+  },
+  {
+    file1: getFixturePath('file3.json'),
+    file2: getFixturePath('file4.yaml'),
+    outputFormat: 'plain',
+    expected: await readFile('result_plain.txt'),
+  },
+  {
+    file1: getFixturePath('file3.yaml'),
+    file2: getFixturePath('file4.yaml'),
+    outputFormat: 'stylysh',
+    expected: await readFile('result2.txt'),
+  },
+  {
+    file1: getFixturePath('file3.json'),
+    file2: getFixturePath('file4.json'),
+    outputFormat: 'json',
+    expected: await readFile('result3.json'),
+  },
+])(
+  'test file1: $file1, file2: $file2, outputFormat: $outputFormat)',
+  ({ file1, file2, outputFormat, expected }) => {
+    expect(gendiff(file1, file2, outputFormat)).toBe(expected);
+  }
+);

@@ -3,8 +3,9 @@ import renderPlain from './plain.js';
 
 const render = (tree, type) => {
   if (type === 'plain') return renderPlain(tree);
-  if (type === 'json') return tree;
-  return renderStylish(tree);
+  if (type === 'json') return JSON.stringify(tree);
+  if (type === 'stylysh') return renderStylish(tree);
+  throw new Error(`Неизвестный формат '${type}'`);
 };
 
 export default render;

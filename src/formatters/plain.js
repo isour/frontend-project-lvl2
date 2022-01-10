@@ -5,11 +5,11 @@ const stringify = (obj) => {
   return `${String(obj)}`;
 };
 
-const convertionFunctions = {
+const conversionFunctions = {
   root: (node, path, fn) => {
     const result = node.children
       .map((childNode) =>
-        convertionFunctions[childNode.status](childNode, `${childNode.key}`, fn)
+        conversionFunctions[childNode.status](childNode, `${childNode.key}`, fn)
       )
       .join('');
     return `${result}`;
@@ -20,7 +20,7 @@ const convertionFunctions = {
   nested: (node, path, fn) => {
     const result = node.children
       .map((childNode) =>
-        convertionFunctions[childNode.status](
+        conversionFunctions[childNode.status](
           childNode,
           `${path}.${childNode.key}`,
           fn
@@ -38,7 +38,7 @@ const convertionFunctions = {
 
 const render = (tree) => {
   const iteration = (node, path) =>
-    convertionFunctions[node.status](node, path, iteration);
+    conversionFunctions[node.status](node, path, iteration);
 
   return iteration(tree, '').trim();
 };

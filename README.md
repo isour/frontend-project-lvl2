@@ -1,3 +1,21 @@
+# Генератор различий
+
+## Api
+
+- `make setup` установка зависимостей проекта
+- `make link` установка утилиты
+- `make test` запуск тестов
+- `make lint` запус линтера
+- `gendiff -h` вызов справки
+- `gendiff -V` вывод версии
+- `gendiff -f` указание выходного формата
+
+## Примеры использования:
+
+- `gendiff file3.json file4.json --format json`
+- `gendiff file1.json file2.json --format stylysh`
+- `gendiff file1.json file2.json --format plain`
+
 ### Hexlet tests and linter status:
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/a6a74afff2d5a22c7383/maintainability)](https://codeclimate.com/github/isour/frontend-project-lvl2/maintainability)

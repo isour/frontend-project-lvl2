@@ -1,3 +1,5 @@
+setup: npm install
+
 install: install-deps
 
 install-deps:

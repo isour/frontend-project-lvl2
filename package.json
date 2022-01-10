@@ -9,7 +9,7 @@
     "testWatch": "npx jest --watch"
   },
   "bin": {
-    "gendiff": "bin/nodejs-package.js"
+    "gendiff": "bin/gendiff.js"
   },
   "repository": {
     "type": "git",
