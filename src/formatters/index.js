@@ -5,7 +5,7 @@ const render = (tree, type) => {
   if (type === 'plain') return renderPlain(tree);
   if (type === 'json') return JSON.stringify(tree);
   if (type === 'stylish') return renderStylish(tree);
-  throw new Error(`Неизвестный формат '${type}'`);
+  throw new Error(`Unknown format: '${type}'`);
 };
 
 export default render;

@@ -1,7 +1,5 @@
 import _ from 'lodash';
 
-const isObject = (test) => typeof test === 'object' && !Array.isArray(test) && test !== null;
-
 const getDiffTree = (object1, object2) => {
   const allKeys = _.union(Object.keys(object1), Object.keys(object2));
   const sortedKeys = _.sortBy(allKeys);
@@ -21,7 +19,7 @@ const getDiffTree = (object1, object2) => {
       };
     }
 
-    if (isObject(object1[key]) && isObject(object2[key])) {
+    if (_.isObject(object1[key]) && _.isObject(object2[key])) {
       return {
         key,
         value: object1[key],
@@ -47,4 +45,9 @@ const getDiffTree = (object1, object2) => {
   });
 };
 
-export { getDiffTree as default };
+const getTree = (object1, object2) => ({
+  status: 'root',
+  children: getDiffTree(object1, object2),
+});
+
+export { getTree as default };
