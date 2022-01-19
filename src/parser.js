@@ -1,18 +1,18 @@
 import yaml from 'js-yaml';
 
 const parserPresets = {
-  json: (file) => JSON.parse(file),
-  yaml: (file) => {
+  json: (data) => JSON.parse(data),
+  yaml: (data) => {
     try {
-      const doc = yaml.load(file);
+      const doc = yaml.load(data);
       return doc;
     } catch (e) {
       return false;
     }
   },
-  yml: (file) => {
+  yml: (data) => {
     try {
-      const doc = yaml.load(file);
+      const doc = yaml.load(data);
       return doc;
     } catch (e) {
       return false;
@@ -20,4 +20,4 @@ const parserPresets = {
   },
 };
 
-export default (file, format) => parserPresets[format](file);
+export default (data, format) => parserPresets[format](data);
